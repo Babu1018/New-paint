@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoSphere</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .crypto-card {
+            transition: transform 0.2s;
+        }
+        .crypto-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .news-ticker-container {
+            position: relative;
+            height: 24px;
+        }
+        
+        .news-ticker {
+            position: absolute;
+            white-space: nowrap;
+            animation: ticker 30s linear infinite;
+        }
+        
+        .news-item {
+            display: inline-block;
+            margin-right: 50px;
+            font-weight: 500;
+        }
+        
+        @keyframes ticker {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        [data-bs-theme="dark"] {
+            --bs-body-bg: #121212;
+            --bs-body-color: #e0e0e0;
+        }
+
+        [data-bs-theme="dark"] .card {
+            background-color: #1e1e1e;
+            border-color: #333;
+        }
+
+        [data-bs-theme="dark"] .bg-body {
+            background-color: #1e1e1e !important;
+        }
+
+        [data-bs-theme="dark"] .table-dark {
+            --bs-table-bg: #0a0a0a;
+        }
+
+        [data-bs-theme="dark"] .bg-secondary {
+            background-color: #2d2d2d !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="./image-nan/3d2c06bc-3303-4d88-a044-88e30f6f05b5.png" alt="CryptoSphere Logo" width="30" height="30" class="d-inline-block align-text-top me-2">
+                CryptoSphere
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#table1">Market</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#more">Bitcoin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#calculator">Calculator</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <button class="btn btn-outline-light me-2" id="darkModeToggle">
+                        <i class="bi bi-moon-fill"></i>
+                    </button>
+                    <button class="btn btn-outline-light me-2">Login</button>
+                    <button class="btn btn-primary">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- News Ticker -->
+    <div class="bg-light py-2">
+        <div class="container">
+            <div class="d-flex align-items-center">
+                <span class="badge bg-primary me-2">NEWS</span>
+                <div class="news-ticker-container overflow-hidden" style="width: 100%;">
+                    <div class="news-ticker">
+                        <span class="news-item">Bitcoin hits new all-time high above $85,000 as institutional demand grows</span>
+                        <span class="news-item">Ethereum's upcoming upgrade promises improved scalability and lower gas fees</span>
+                        <span class="news-item">Ripple (XRP) gains momentum following favorable court rulings</span>
+                        <span class="news-item">Solana ecosystem continues to expand with new DeFi protocols</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mt-4" id="home">
+        <h1 class="text-center mb-5">Cryptocurrency-Dashboard</h1>
+        <div class="row">
+            <div class="col-md-4 mb-4"> 
+                <div class="card crypto-card shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="#more">Bitcoin </a>(BTC)
+                            <img src="./image-nan/Premium Vector _ Bitcoin_ Golden cryptocurrency coin. Electronics finance money symbol_" alt="" height="30" width="30">
+                        </h5>
+                        <p class="card-text">Price: $85,771.96</p>
+                        <p class="card-text">24h Change: -1.6%</p>
+                        <p class="card-text">Market Cap: $1700B</p>
+                        <div class="chart-container" style="height: 100px;">
+                            <canvas class="crypto-chart" data-coin="bitcoin"></canvas>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+                
+            <div class="col-md-4 mb-4">
+                <div class="card crypto-card shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="#more">Ethereum</a> (ETH)
+                             <img src="./image-nan/Neon ethereum futuristic logo.jpeg" alt="" height="30" width="30">
+                        </h5>
+                        <p class="card-text">Price: $2,223.95</p>                    
+                        <p class="card-text">24h Change: -1.44%</p>
+                        <p class="card-text">Market Cap: $260B</p>
+                        <div class="chart-container" style="height: 100px;">
+                            <canvas class="crypto-chart" data-coin="ethereum"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            <div class="col-md-4 mb-4">
+                <div class="card crypto-card shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="#more">Tether</a>(USDT)
+                            <img src="./image-nan/Tether logo vector in _EPS, .AI, .SVG, .PDF free download - Brandlogos.net" alt="" height="30" width="30">
+                        </h5>
+                        <p class="card-text">Price: $1,584.9</p>
+                        <p class="card-text">24h Change: -0.3%</p>
+                        <p class="card-text">Market Cap: $140B</p>
+                        <div class="chart-container" style="height: 100px;">
+                            <canvas class="crypto-chart" data-coin="tether"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4"> 
+                <div class="card crypto-card shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="#more">XRP</a> (XRP)
+                            <img src="./image-nan/XRP Logo - minimal design by cryptogeek.jpeg" alt="" height="30" width="30">
+                        </h5>
+                        <p class="card-text">Price: $2.96</p>
+                        <p class="card-text">24h Change: +2.36%</p>
+                        <p class="card-text">Market Cap: $130B</p>
+                        <div class="chart-container" style="height: 100px;">
+                            <canvas class="crypto-chart" data-coin="bitcoin"></canvas>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+                    
+            <div class="col-md-4 mb-4">
+                <div class="card crypto-card shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="#more">BNB</a> (BNB)
+                             <img src="./image-nan/BNB Monogram.jpeg" alt="" height="30" width="30">
+                        </h5>
+                        <p class="card-text">Price: $608.91</p>                    
+                        <p class="card-text">24h Change: +2.37%</p>
+                        <p class="card-text">Market Cap: $56B</p>
+                        <div class="chart-container" style="height: 100px;">
+                            <canvas class="crypto-chart" data-coin="bitcoin"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    
+            <div class="col-md-4 mb-4">
+                <div class="card crypto-card shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="#more">Solana</a>(SOL)
+                            <img src="./image-nan/2b076f4e-8774-467e-8f13-0379d3544128.jpeg" alt="" height="30" width="30">
+                        </h5>
+                        <p class="card-text">Price: $143.41</p>
+                        <p class="card-text">24h Change: -1.53%</p>
+                        <p class="card-text">Market Cap: $100B</p>
+                        <div class="chart-container" style="height: 100px;">
+                            <canvas class="crypto-chart" data-coin="bitcoin"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4"> 
+                <div class="card crypto-card shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="#more">USDC</a> (UDDC)
+                            <img src="./image-nan/Crypto_com (@cryptocom) on X.jpeg" alt="" height="30" width="30">
+                        </h5>
+                        <p class="card-text">Price: $32.9998</p>
+                        <p class="card-text">24h Change: -0.02%</p>
+                        <p class="card-text">Market Cap: $49B</p>
+                        <div class="chart-container" style="height: 100px;">
+                            <canvas class="crypto-chart" data-coin="tether"></canvas>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+                    
+            <div class="col-md-4 mb-4">
+                <div class="card crypto-card shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="#more">Dogecoin</a> (DOGE)
+                             <img src="./image-nan/Crypto currency dogecoin golden symbol vector image on VectorStock.jpeg" alt="" height="30" width="30">
+                        </h5>
+                        <p class="card-text">Price: $61.2025</p>                    
+                        <p class="card-text">24h Change: -0.02%</p>
+                        <p class="card-text">Market Cap: $30B</p>
+                        <div class="chart-container" style="height: 100px;">
+                            <canvas class="crypto-chart" data-coin="bitcoin"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    
+            <div class="col-md-4 mb-4">
+                <div class="card crypto-card shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="#more">Cardana</a>(ADA)
+                            <img src="./image-nan/Cardano (ADA) Vector Logo.jpeg" alt="" height="30" width="30">
+                        </h5>
+                        <p class="card-text">Price: $0.6619</p>
+                        <p class="card-text">24h Change: +58.66%</p>
+                        <p class="card-text">Market Cap: $5B</p>
+                        <div class="chart-container" style="height: 100px;">
+                            <canvas class="crypto-chart" data-coin="bitcoin"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+
+            <div class="col-md-4 mb-4">
+                <div class="card crypto-card shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="#more">Tron</a>(TRX)
+                            <img src="./image-nan/tron.jpg" alt="" height="30" width="30">
+                        </h5>
+                        <p class="card-text">Price: $91.2332</p>
+                        <p class="card-text">24h Change: -0.12%</p>
+                        <p class="card-text">Market Cap: $4B</p>
+                        <div class="chart-container" style="height: 100px;">
+                            <canvas class="crypto-chart" data-coin="bitcoin"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+
+            <div class="col-md-4 mb-4">
+                <div class="card crypto-card shadow-lg p-3 mb-5 bg-body rounded">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="#more">Hedera</a>(HBAR)
+                            <img src="./image-nan/808ae86f-2401-4399-9d22-d5598d9f5673.jpeg" alt="" height="30" width="30">
+                        </h5>
+                        <p class="card-text">Price: $55.2485</p>
+                        <p class="card-text">24h Change: +7.47%</p>
+                        <p class="card-text">Market Cap: $1B</p>
+                        <div class="chart-container" style="height: 100px;">
+                            <canvas class="crypto-chart" data-coin="bitcoin"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+
+    <!-- Cryptocurrency Calculator -->
+    <div class="container my-5" id="calculator">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="card shadow">
+                    <div class="card-header bg-dark text-white">
+                        <h4 class="mb-0">Cryptocurrency Calculator</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="cryptoSelect" class="form-label">Select Cryptocurrency</label>
+                                <select class="form-select" id="cryptoSelect">
+                                    <option value="85771.96" data-symbol="BTC">Bitcoin (BTC)</option>
+                                    <option value="2223.95" data-symbol="ETH">Ethereum (ETH)</option>
+                                    <option value="1584.9" data-symbol="USDT">Tether (USDT)</option>
+                                    <option value="2.96" data-symbol="XRP">XRP (XRP)</option>
+                                    <option value="608.91" data-symbol="BNB">BNB (BNB)</option>
+                                    <option value="143.41" data-symbol="SOL">Solana (SOL)</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="amountInput" class="form-label">Amount</label>
+                                <input type="number" class="form-control" id="amountInput" value="1" min="0" step="0.01">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span id="coinAmount">1</span> <span id="coinSymbol">BTC</span> =
+                                    </div>
+                                    <div>
+                                        <h3 class="mb-0">$<span id="calculatedPrice">85771.96</span></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Market Table with Filters -->
+    <div class="container mb-4" id="table1">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input type="text" id="cryptoSearch" class="form-control" placeholder="Search cryptocurrencies...">
+                    <button class="btn btn-primary" type="button">Search</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="btn-group w-100">
+                    <button class="btn btn-outline-secondary filter-btn active" data-filter="all">All</button>
+                    <button class="btn btn-outline-secondary filter-btn" data-filter="gainers">Top Losers</button>
+                    <button class="btn btn-outline-secondary filter-btn" data-filter="losers">Top Gainers </button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Market Table  -->
+    <div class="mx-5 p-5 w-5 sm">
+        <table class="table table-striped table-bordered table-dark text-left table-hover table-responsive-sm">
+            <thead>
+                <tr class="text-light">
+                    <th class="py-2">#</th>
+                    <th class="py-2">Name</th>
+                    <th class="py-2">Price</th>
+                    <th class="py-2">1h %</th>
+                    <th class="py-2">24h %</th>
+                    <th class="py-2">7d %</th>
+                    <th class="py-2">Market Cap</th>
+                    <th class="py-2">Volume(24h)</th>
+                    <th class="py-2">Circulating Supply</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="py-2">1</td>
+                    <td class="py-2">
+                        <img alt="Bitcoin logo" height="20" src="./image-nan/Premium Vector _ Bitcoin_ Golden cryptocurrency coin. Electronics finance money symbol_" width="20"/>
+                        <span>Bitcoin BTC</span>
+                    </td>
+                    <td class="py-2 text-success">$85,659.12</td>
+                    <td class="py-2 text-danger">-0.14%</td>
+                    <td class="py-2 text-danger">-0.49%</td>
+                    <td class="py-2 text-danger">-11.15%</td>
+                    <td class="py-2">$1,698,716,454,733</td>
+                    <td class="py-2">$26,538,652,540</td>
+                    <td class="py-2">309.53K BTC</td>
+                </tr>
+                <tr>
+                    <td class="py-2">2</td>
+                    <td class="py-2">
+                        <img alt="Ethereum logo" src="./image-nan/Neon ethereum futuristic logo.jpeg"height="20" width="20">
+                        <span>Ethereum ETH</span>
+                    </td>
+                    <td class="py-2 text-success">$2,224.68</td>
+                    <td class="py-2 text-success">0.16%</td>
+                    <td class="py-2 text-danger">-1.74%</td>
+                    <td class="py-2 text-danger">-19.52%</td>
+                    <td class="py-2">$268,265,438,666</td>
+                    <td class="py-2">$16,334,261,317</td>
+                    <td class="py-2">7.33M ETH</td>
+                </tr>
+                <tr>
+                    <td class="py-2">3</td>
+                    <td class="py-2 b">
+                        <img alt="Tether logo" height="20" src="./image-nan/Tether logo vector in _EPS, .AI, .SVG, .PDF free download - Brandlogos.net" width="20"/>
+                        <span>Tether USDT</span>
+                    </td>
+                    <td class="py-2 text-success">$0.9994</td>
+                    <td class="py-2 text-success">0.01%</td>
+                    <td class="py-2 text-danger">-0.02%</td>
+                    <td class="py-2 text-danger">-0.07%</td>
+                    <td class="py-2">$142,119,413,185</td>
+                    <td class="py-2">$57,660,900,813</td>
+                    <td class="py-2">57.68B USDT</td>
+                </tr>
+                <tr>
+                    <td class="py-2">4</td>
+                    <td class="py-2">
+                        <img alt="XRP logo" height="20" src="./image-nan/XRP Logo - minimal design by cryptogeek.jpeg" width="20"/>
+                        <span>XRP XRP</span>
+                    </td>
+                    <td class="py-2 text-success">$2.24</td>
+                    <td class="py-2 text-danger">-0.44%</td>
+                    <td class="py-2 text-success">1.70%</td>
+                    <td class="py-2 text-danger">-12.32%</td>
+                    <td class="py-2">$130,045,124,974</td>
+                    <td class="py-2">$3,172,759,051</td>
+                    <td class="py-2">1.41B XRP</td>
+                </tr>
+                <tr>
+                    <td class="py-2">5</td>
+                    <td class="py-2">
+                        <img alt="BNB logo" height="20" src="./image-nan/BNB Monogram.jpeg" width="20"/>
+                        <span>BNB BNB</span>
+                    </td>
+                    <td class="py-2 text-success">$608.20</td>
+                    <td class="py-2 text-success">0.17%</td>
+                    <td class="py-2 text-success">2.48%</td>
+                    <td class="py-2 text-danger">-8.86%</td>
+                    <td class="py-2">$86,654,589,811</td>
+                    <td class="py-2">$1,614,687,395</td>
+                    <td class="py-2">2.65M BNB</td>
+                </tr>
+                <tr>
+                    <td class="py-2">6</td>
+                    <td class="py-2">
+                        <img alt="Solana logo" height="20" src="./image-nan/2b076f4e-8774-467e-8f13-0379d3544128.jpeg" width="20"/>
+                        <span>Solana SOL</span>
+                    </td>
+                    <td class="py-2 text-success md-auto">$143.44</td>
+                    <td class="py-2 text-danger">-0.35%</td>
+                    <td class="py-2 text-danger">-1.92%</td>
+                    <td class="py-2 text-danger">-16.07%</td>
+                    <td class="py-2">$72,811,352,755</td>
+                    <td class="py-2">$2,773,450,926</td>
+                    <td class="py-2">19.27M SOL</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Bitcoin Detail Section -->
+    <div class="container-fluid py-5 bg-light" id="more">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card shadow-lg mb-4">
+                        <div class="card-header bg-dark text-white d-flex align-items-center">
+                            <img src="./image-nan/Premium Vector _ Bitcoin_ Golden cryptocurrency coin. Electronics finance money symbol_" alt="Bitcoin" class="me-3" height="40" width="40">
+                            <div>
+                                <h2 class="mb-0">Bitcoin (BTC)</h2>
+                                <small>Digital Gold</small>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div>
+                                    <h2 class="mb-0">$85,771.96</h2>
+                                    <span class="badge bg-success">+0.59% (24h)</span>
+                                </div>
+                                <div>
+                                    <button class="btn btn-success me-2">Buy</button>
+                                    <button class="btn btn-danger">Sell</button>
+                                </div>
+                            </div>
+                            
+                            <!-- Price Chart -->
+                            <div class="mb-4">
+                                <h5>Price Chart (Last 7 Days)</h5>
+                                <div style="height: 300px;">
+                                    <canvas id="bitcoinDetailChart"></canvas>
+                                </div>
+                            </div>
+                            
+                            <!-- Key Stats -->
+                            <h5>Key Statistics</h5>
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-4">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <h6 class="card-subtitle mb-2 text-muted">Market Cap</h6>
+                                            <h5 class="card-title mb-0">$1.7T</h5>
+                                            <small class="text-success">+0.59%</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <h6 class="card-subtitle mb-2 text-muted">Volume (24h)</h6>
+                                            <h5 class="card-title mb-0">$25.2B</h5>
+                                            <small class="text-danger">-60.05%</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <h6 class="card-subtitle mb-2 text-muted">Circulating Supply</h6>
+                                            <h5 class="card-title mb-0">19.33M BTC</h5>
+                                            <small>of 21M max</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <!-- About Bitcoin -->
+                    <div class="card shadow-lg mb-4">
+                        <div class="card-header bg-dark text-white">
+                            <h5 class="mb-0">About Bitcoin</h5>
+                        </div>
+                        <div class="card-body">
+                            <p>Bitcoin is a decentralized digital currency that operates without a central authority or banks. It uses peer-to-peer technology to facilitate instant payments.</p>
+                            <p>Created in 2009 by an unknown person using the alias Satoshi Nakamoto, Bitcoin introduced the concept of cryptocurrency to the world.</p>
+                            <p>Bitcoin transactions are verified by network nodes through cryptography and recorded in a public distributed ledger called a blockchain.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent News -->
+                    <div class="card shadow-lg">
+                        <div class="card-header bg-dark text-white">
+                            <h5 class="mb-0">Recent News</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3 pb-3 border-bottom">
+                                <h6>BlackRock Adds Bitcoin ETF to Portfolio</h6>
+                                <p class="mb-1">BlackRock's inclusion of a Bitcoin spot ETF in its $150 billion portfolio underscores the growing trend of institutional acceptance.</p>
+                                <small class="text-muted">2 hours ago</small>
+                            </div>
+                            <div class="mb-3 pb-3 border-bottom">
+                                <h6>Bitcoin Mining Difficulty Reaches All-Time High</h6>
+                                <p class="mb-1">The Bitcoin network has seen its mining difficulty increase by 7.82%, reaching a new</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer></footer>
+    </div>
+    <script src="./crypto-dashboard.js"></script>
+</body>
+</html>
